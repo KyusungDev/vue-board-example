@@ -1,22 +1,25 @@
 <template>
   <div>
-    <div>
-      <h1>{{ post.title }}</h1>
-      <hr />
-      <div>내용</div>
-      <div style="height: 300px; width: 300px; border: 1px solid gray;">{{ post.contents }}</div>
-      <div>
-        <router-link :to="{ name: 'PostEditPage', params: {id: id} }">수정</router-link>
-        {{ ` | `}}
-        <router-link :to="{ name: 'SupportHistory' }">목록</router-link>
-      </div>
-      <hr />
-    </div>
+    <post-view v-if="post" :post="post" />
+    <p v-else>게시글 불러오는 중...</p>
+    <router-link :to="{ name: 'PostEditPage', params: { id } }">
+      <button>수정</button>
+    </router-link>
+    <button>삭제</button>
+    <router-link :to="{ name: 'PostListPage' }">
+      <button>목록</button>
+    </router-link>
+    <comment-list v-if="post" :comments="post.comments"></comment-list>
+    <comment-form @submit="onCommentSubmit" />
   </div>
 </template>
 
 <script>
-import APISupportHistory from '@/api/cms/support';
+import { createNamespacedHelpers } from 'vuex';
+import PostView from './../components/PostView';
+import CommentList from './../components/CommentList';
+import CommentForm from './../components/CommentForm';
+const { mapState, mapActions } = createNamespacedHelpers('SupportHistory');
 
 export default {
   name: 'PostViewPage',
@@ -26,22 +29,23 @@ export default {
       required: true
     }
   },
-  data() {
-    return {
-      post: {}
-    };
+  components: {
+    PostView,
+    CommentList,
+    CommentForm
   },
-  computed: {},
+  computed: {
+    ...mapState(['post'])
+  },
   created() {
-    APISupportHistory.getPost(this.id)
-      .then(res => {
-        console.log(res);
-        this.post = res.data;
-      })
-      .catch(err => {
-        // alert(err.response.data.msg);
-        this.$router.back();
-      });
+    this.fetchPost(this.postId).catch(err => {
+      // alert(err.response.data.msg);
+      this.$router.back();
+    });
+  },
+  methods: {
+    ...mapActions(['fetchPost']),
+    onCommentSubmit() {}
   }
 };
 </script>

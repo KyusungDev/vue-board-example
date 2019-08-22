@@ -31,21 +31,19 @@ export default {
         { label: '번호', field: 'index' },
         { label: '제목', field: 'title' },
         { label: '작성자', field: 'user.name' },
-        { label: '작성일', field: 'createdAt' },
-        {
-          label: '첨부파일',
-          field: 'files',
-          width: '200px',
-          thClass: 'text-center',
-          tdClass: 'text-center'
-        }
+        { label: '작성일', field: 'createdAt' }
+        // {
+        //   label: '첨부파일',
+        //   field: 'files',
+        //   width: '200px',
+        //   thClass: 'text-center',
+        //   tdClass: 'text-center'
+        // }
       ]
     };
   },
   methods: {
     onRowClick(params) {
-      console.log(params);
-      console.log('id', params.row.id);
       this.$router.push({
         name: 'PostViewPage',
         params: { id: params.row.id.toString() }

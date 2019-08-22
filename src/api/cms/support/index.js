@@ -1,12 +1,11 @@
 import client from '@/api/client';
-import { resolve } from 'any-promise';
 const BASE_URL = 'http://localhost:8000/api';
 
 export default {
-  // getPost: id => {
+  // getPostList: () => {
   //   return new Promise((resolve, reject) => {
   //     client
-  //       .get(`${BASE_URL}/posts/${id}`)
+  //       .get(`${BASE_URL}/posts`)
   //       .then(res => {
   //         if (res && res.status === 200) {
   //           resolve(res);
@@ -21,96 +20,104 @@ export default {
   //       });
   //   });
   // },
-  getPost: id => {
-    return new Promise((resolve, reject) => {
-      resolve({
-        data: {
-          createdAt: '2019-05-14 22:26',
-          updatedAt: '2019-05-14 22:26',
-          id: 1,
-          title: '제목입니다.',
-          contents: '게시글 내용입니다.',
-          user: {
-            id: 1,
-            email: 'admin@candovue.com',
-            name: 'Admin',
-            isAdmin: true
-          },
-          comments: [
-            {
-              createdAt: '2019-05-14 22:26',
-              updatedAt: '2019-05-14 22:26',
-              id: 2,
-              contents: '안녕하세요. 첫번째 게시글에 대한 두번째 댓글입니다.',
-              user: {
-                id: 1,
-                email: 'admin@candovue.com',
-                name: 'Admin',
-                isAdmin: true
-              }
-            },
-            {
-              createdAt: '2019-05-14 22:26',
-              updatedAt: '2019-05-14 22:26',
-              id: 1,
-              contents: '안녕하세요. 첫번째 게시글에 대한 첫번째 댓글입니다.',
-              user: {
-                id: 1,
-                email: 'admin@candovue.com',
-                name: 'Admin',
-                isAdmin: true
-              }
-            }
-          ]
-        }
-      });
-    });
-  },
-  get: () => {
-    return {
-      data: [
-        {
-          createdAt: '2019-05-14 22:26',
-          updatedAt: '2019-05-14 22:26',
-          id: 1,
-          title: '제목입니다.',
-          contents: '게시글 내용입니다.',
-          user: {
-            id: 1,
-            email: 'admin@candovue.com',
-            name: 'Admin',
-            isAdmin: true
-          },
-          comments: [
-            {
-              createdAt: '2019-05-14 22:26',
-              updatedAt: '2019-05-14 22:26',
-              id: 2,
-              contents: '안녕하세요. 첫번째 게시글에 대한 두번째 댓글입니다.',
-              user: {
-                id: 1,
-                email: 'admin@candovue.com',
-                name: 'Admin',
-                isAdmin: true
-              }
-            },
-            {
-              createdAt: '2019-05-14 22:26',
-              updatedAt: '2019-05-14 22:26',
-              id: 1,
-              contents: '안녕하세요. 첫번째 게시글에 대한 첫번째 댓글입니다.',
-              user: {
-                id: 1,
-                email: 'admin@candovue.com',
-                name: 'Admin',
-                isAdmin: true
-              }
-            }
-          ]
-        }
-      ]
-    };
-  }
+  getPost: id => client.get(`${BASE_URL}/supports/${id}`),
+  getPostList: () => client.get(`${BASE_URL}/supports`),
+  create: data => client.get(`${BASE_URL}/supports`, data),
+  update: (id, data) => client.get(`${BASE_URL}/supports/${id}`, data),
+  delete: id => client.get(`${BASE_URL}/supports/${id}`)
+
+  // getPost: id => {
+  //   return new Promise((resolve, reject) => {
+  //     resolve({
+  //       data: {
+  //         createdAt: '2019-05-14 22:26',
+  //         updatedAt: '2019-05-14 22:26',
+  //         id: 1,
+  //         title: '제목입니다.',
+  //         contents: '게시글 내용입니다.',
+  //         user: {
+  //           id: 1,
+  //           email: 'admin@candovue.com',
+  //           name: 'Admin',
+  //           isAdmin: true
+  //         },
+  //         comments: [
+  //           {
+  //             createdAt: '2019-05-14 22:26',
+  //             updatedAt: '2019-05-14 22:26',
+  //             id: 2,
+  //             contents: '두번째 댓글',
+  //             user: {
+  //               id: 1,
+  //               email: 'admin@candovue.com',
+  //               name: 'Admin',
+  //               isAdmin: true
+  //             }
+  //           },
+  //           {
+  //             createdAt: '2019-05-14 22:26',
+  //             updatedAt: '2019-05-14 22:26',
+  //             id: 1,
+  //             contents: '첫번째 댓글',
+  //             user: {
+  //               id: 1,
+  //               email: 'admin@candovue.com',
+  //               name: 'Admin',
+  //               isAdmin: true
+  //             }
+  //           }
+  //         ]
+  //       }
+  //     });
+  //   });
+  // },
+  // getPostList: () => {
+  //   return new Promise((resolve, reject) => {
+  //     resolve({
+  //       data: [
+  //         {
+  //           createdAt: '2019-05-14 22:26',
+  //           updatedAt: '2019-05-14 22:26',
+  //           id: 1,
+  //           title: '제목입니다.',
+  //           contents: '게시글 내용입니다.',
+  //           user: {
+  //             id: 1,
+  //             email: 'admin@candovue.com',
+  //             name: 'Admin',
+  //             isAdmin: true
+  //           },
+  //           comments: [
+  //             {
+  //               createdAt: '2019-05-14 22:26',
+  //               updatedAt: '2019-05-14 22:26',
+  //               id: 2,
+  //               contents: '안녕하세요. 첫번째 게시글에 대한 두번째 댓글입니다.',
+  //               user: {
+  //                 id: 1,
+  //                 email: 'admin@candovue.com',
+  //                 name: 'Admin',
+  //                 isAdmin: true
+  //               }
+  //             },
+  //             {
+  //               createdAt: '2019-05-14 22:26',
+  //               updatedAt: '2019-05-14 22:26',
+  //               id: 1,
+  //               contents: '안녕하세요. 첫번째 게시글에 대한 첫번째 댓글입니다.',
+  //               user: {
+  //                 id: 1,
+  //                 email: 'admin@candovue.com',
+  //                 name: 'Admin',
+  //                 isAdmin: true
+  //               }
+  //             }
+  //           ]
+  //         }
+  //       ]
+  //     });
+  //   });
+  // }
 
   //   get: async () => {
   //     return {
