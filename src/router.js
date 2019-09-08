@@ -21,29 +21,26 @@ export default new Router({
       // which is lazy-loaded when the route is visited.
       component: () =>
         import(
-          /* webpackChunkName: "about" */ '@/views/cms/support/SupportHistory.vue'
+          /* webpackChunkName: "about" */ '@/views/cms/supports/SupportHistory.vue'
         )
     },
     {
-      path: '/post',
+      path: '/cms/supports/post',
       name: 'PostListPage',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () =>
         import(
-          /* webpackChunkName: "about" */ '@/views/cms/support/pages/PostListPage.vue'
+          /* webpackChunkName: "PostListPage" */ '@/views/cms/supports/pages/PostListPage.vue'
         )
     },
     {
-      path: '/post/create',
+      path: '/cms/supports/post/create',
       name: 'PostCreatePage',
       component: () =>
         import(
-          /* webpackChunkName: "about" */ '@/views/cms/support/pages/PostCreatePage.vue'
+          /* webpackChunkName: "PostCreatePage" */ '@/views/cms/supports/pages/PostCreatePage.vue'
         )
       // beforeEnter(to, from, next) {
-      //   const { isAuthorized } = store.getters;
+      //   const { isAuthorized } = this.$store['Auth'].getter;
       //   if (!isAuthorized) {
       //     alert('로그인이 필요합니다!');
       //     next({ name: 'Signin' });
@@ -52,24 +49,24 @@ export default new Router({
       // }
     },
     {
-      path: '/post/:id',
+      path: '/cms/supports/post/:id',
       name: 'PostViewPage',
       props: true,
       component: () =>
         import(
-          /* webpackChunkName: "about" */ '@/views/cms/support/pages/PostViewPage.vue'
+          /* webpackChunkName: "PostViewPage" */ '@/views/cms/supports/pages/PostViewPage.vue'
         )
     },
     {
-      path: '/post/:id/edit',
+      path: '/cms/supports/post/:id/edit',
       name: 'PostEditPage',
       props: true,
       component: () =>
         import(
-          /* webpackChunkName: "about" */ '@/views/cms/support/pages/PostEditPage.vue'
+          /* webpackChunkName: "PostEditPage" */ '@/views/cms/supports/pages/PostEditPage.vue'
         )
       // beforeEnter(to, from, next) {
-      //   const { isAuthorized } = store.getters;
+      //   const { isAuthorized } = this.$store['Auth'].getter;
       //   if (!isAuthorized) {
       //     alert('로그인이 필요합니다!');
       //     next({ name: 'Signin' });

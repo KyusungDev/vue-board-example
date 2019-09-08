@@ -1,11 +1,11 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import SupportHistory from '@/store/modules/cms/support';
+import cmsSupports from '@/store/modules/cms/support';
 
 Vue.use(Vuex);
 
 const storeModules = {
-  SupportHistory
+  cmsSupports
 };
 
 export default new Vuex.Store({

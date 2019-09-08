@@ -1,4 +1,4 @@
-import api from '@/api/cms/support';
+import api from '@/api/cms/supports';
 import * as MUTATION from './mutation';
 
 const state = {
